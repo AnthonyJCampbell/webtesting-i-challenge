@@ -8,7 +8,32 @@ const tenEnhancementTest = {
 }
 
 describe('succeed() method', () => {
+  test('When passing something other than an object, return an error', () => {
+    expect(succeed('hello world!')).toEqual({
+      error:'Pass an object, please'}
+    )
+  })
+  test('When passing an object with one or more values being undefined, return an error', () => {
+    expect(succeed({durability: 10, enhancement: 10})).toEqual({
+      error:'Make sure you pass an object with a name, durability, and enhancement value'
+    })
+  })
 
+  test('When passing an object with >= 20 enhancement, just return the object with 20 enhancement', () => {
+    expect(succeed({
+        name: "medium item", 
+        durability: 10, 
+        enhancement: 22
+      }))
+      .toEqual({
+        name: "medium item",
+        durability: 10,
+        enhancement: 20})
+  })
+
+  test('Return an object with +1 enhancement', () => {
+    expect(succeed(tenEnhancementTest)).toEqual({name: "medium item",durability: 10,enhancement: 11})
+  })
 })
 
 describe('fail() method', () => {
@@ -37,7 +62,6 @@ describe('fail() method', () => {
     expect(fail({name: "medium item", durability: 25,enhancement: 10})).toEqual({name: "medium item", durability: 15,enhancement: 10})
   })
   
-
   test('When an item with < 5 durability && < 15 enhancement, returns an object with 0 durability', () => {
     expect(fail({name: "medium item", durability: 4,enhancement: 10})).toEqual({name: "medium item", durability: 0,enhancement: 10})
     expect(fail({name: "medium item", durability: 2,enhancement: 14})).toEqual({name: "medium item", durability: 0,enhancement: 14})
