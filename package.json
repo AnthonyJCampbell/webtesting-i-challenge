@@ -1,0 +1,12 @@
+{
+  "name": "Day1Challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/AnthonyJCampbell/webtesting-i-challenge.git",
+  "author": "AnthonyJCampbell <anthony@anthonyjcampbell.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^24.7.1"
+  }
+}
